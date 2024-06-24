@@ -1,0 +1,54 @@
+{% include './base.html' %}
+
+{% block title %}
+<title>Mascotas</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Mascotas</h1>
+</div>
+
+<div class="container mt-3">
+    <table class="table table-striped">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">Nombre</th>
+                <th scope="col">Tipo mascota</th>
+                <th scope="col">Fecha Nacimiento</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pet in pets %}
+            <tr class="text-center">
+                <td>{{ pet.pet_name }}</td>
+                <!-- <td>{{ pet.id_type_pet_id }}</td> -->
+                <td>{{ pet.type_pet }}</td>
+                <td>{{ pet.date_birth_pet }}</td>
+                <td>
+                    <div>
+                        <a href="{% url 'pet_edit' pet.id %}" style="text-decoration: none;" class="me-2">
+                            <i class="fa-solid fa-pen-to-square fs-3 text-success"></i>
+                        </a>
+                        <a href="{% url 'pet_delete' pet.id %}" style="text-decoration: none;">
+                            <i class="fa-solid fa-trash fs-3 text-danger"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="container d-flex justify-content-between mt-4 mb-4">
+    <a href="{% url 'home' %}">
+        <button type="button" class="btn btn-primary">Volver</button>
+    </a>
+    <a href="{% url 'pet_create' %}">
+        <button type="button" class="btn btn-primary">Agregar Mascota</button>
+    </a>
+</div>
+
+{% endblock %}

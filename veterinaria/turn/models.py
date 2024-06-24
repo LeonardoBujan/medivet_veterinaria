@@ -1,13 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import User
 from pet.models import Pet
-from type_attention.models import TypeAttention
+from professional.models import Professional
+from django.contrib.auth.models import User
 
-# Create your models here.
 class Turn(models.Model):
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
-    id_type_attention = models.ForeignKey(TypeAttention, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
+    professional = models.ForeignKey(Professional, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
 
     class Meta:
         db_table = 'turns'

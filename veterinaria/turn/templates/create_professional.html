@@ -1,0 +1,54 @@
+{% load static %}
+
+{% include './base.html' %}
+
+{% block title %}
+<title>Profesional</title>
+<script src="{% static 'js/create_professional.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center">Seleccionar Profesional</h1>
+</div>
+
+<div class="container text-center mt-3">
+    <div class="container d-flex col-6">
+        <div class="col">
+            <h4>Nombre</h4>
+        </div>
+        <div class="col">
+            <h4>Apellido</h4>
+        </div>
+        <div class="col">
+            <h4>Seleccionar</h4>
+        </div>
+    </div>
+    {% for person in professional %}
+    <div class="container col-6 d-flex mt-2 mb-2 pt-2 pb-2 border border-primary-subtle rounded">
+        <div class="col">
+            {{ person.first_name_professional }}
+        </div>
+        <div class="col">
+            {{ person.last_name_professional }}
+        </div>
+        <div class="col">
+            <input class="form-check-input" type="radio" value="{{ person.id }}" id="{{ person.id }}"
+                name="professional_check">
+        </div>
+    </div>
+    {% endfor %}
+    <div class="container col-6 d-flex justify-content-around mt-4 mb-4">
+        <a href="{% url 'create_attention' pets %}">
+            <button type="button" class="btn btn-primary">Atras</button>
+        </a>
+
+        <button type="button" class="btn btn-primary" id="select_create_professional">Siguiente</button>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

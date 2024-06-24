@@ -1,0 +1,45 @@
+{% load static %}
+
+{% include './base.html' %}
+
+{% block title %}
+<title>Atencion</title>
+<script src="{% static 'js/create_attention.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center">Seleccionar Tipo de Atencion</h1>
+</div>
+
+<div class="container text-center mt-3">
+    <div class="container d-flex col-6">
+        <div class="col">
+            <h4>Tipo</h4>
+        </div>
+        <div class="col">
+            <h4>Seleccionar</h4>
+        </div>
+    </div>
+    {% for attention in type_attention %}
+    <div class="container col-6 d-flex mt-2 mb-2 pt-2 pb-2 border border-primary-subtle rounded">
+        <div class="col">
+            {{ attention.name_type_attention }}
+        </div>
+        <div class="col">
+            <input class="form-check-input" type="radio" value="{{ attention.id }}" id="{{ attention.id }}"
+                name="attention_check">
+        </div>
+    </div>
+    {% endfor %}
+    <div class="container col-6 d-flex justify-content-around mt-4 mb-4">
+        <a href="{% url 'create_pet' %}">
+            <button type="button" class="btn btn-primary">Atras</button>
+        </a>
+
+        <button type="button" class="btn btn-primary" id="select_create_attention">Siguiente</button>
+
+    </div>
+
+    {% endblock %}

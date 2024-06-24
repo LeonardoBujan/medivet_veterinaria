@@ -1,0 +1,21 @@
+{% load static %}
+
+{% include './base.html' %}
+
+{% block title %}
+<title>Inicio</title>
+{% endblock %}
+
+{% block content %}
+<!-- Valida si el usuario está autenticado para mostrar el Home -->
+{% if user.is_authenticated %}
+<!-- Muestra el Home para comenzar a operar con la aplicación cuando el usuario está logueado -->
+{% include 'authenticated_home.html' %}
+
+{% else %}
+<!-- Muestra el Home de inicio cuando el usuario no está logueado -->
+{% include 'unauthenticated_home.html' %}
+
+{% endif %}
+
+{% endblock %}

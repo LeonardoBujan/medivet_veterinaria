@@ -1,0 +1,36 @@
+{% include './base.html' %}
+
+{% block title %}
+<title>Registrar Mascota</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid col-4 my-auto">
+    <form action='/pet/create/' method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="pet_name">Nombre</span>
+            <input type="text" class="form-control" aria-label="pet_name" aria-describedby="pet_name" name="pet_name"
+                required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="date_birth">Fecha nacimiento</span>
+            <input type="date" class="form-control" aria-label="date_birth" aria-describedby="date_birth"
+                name="date_birth" required>
+        </div>
+        <select class="form-select mb-3" aria-label="Default select example" name="type_pet">
+            <option selected>Tipo de mascota</option>
+            {% for type in type_pet %}
+            <option value="{{ type.id }}">{{ type.type_pet_name }}</option>
+            {% endfor %}
+        </select>
+        <div class="container text-center d-flex justify-content-around">
+            <a href="{% url 'pet' %}">
+                <button type="button" class="btn btn-primary mt-3">Cancelar</button>
+            </a>
+            <button type="submit" class="btn btn-primary mt-3">Registrar Mascota</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

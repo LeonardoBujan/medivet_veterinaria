@@ -1,0 +1,60 @@
+{% include './base.html' %}
+
+{% block title %}
+<title>Turnos</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-2">
+    <h1 class="text-center">Turnos</h1>
+</div>
+
+<div class="container text-center mt-3">
+    <div class="container d-flex">
+        <div class="col">
+            <h4>Mascota</h4>
+        </div>
+        <div class="col">
+            <h4>Profesional</h4>
+        </div>
+        <div class="col">
+            <h4>Fecha</h4>
+        </div>
+        <div class="col">
+            <h4>Hora</h4>
+        </div>
+        <div class="col">
+            <h4>Acciones</h4>
+        </div>
+    </div>
+    {% for turn in turns %}
+    <div class="container d-flex mt-2 mb-2 pt-2 pb-2 border border-primary-subtle rounded">
+        <div class="col">
+            {{ turn.pet }}
+        </div>
+        <div class="col">
+            {{ turn.professional }}
+        </div>
+        <div class="col">
+            {{ turn.date }}
+        </div>
+        <div class="col">
+            {% if turn.time == noon %}
+            {{ '12:00' }}
+            {% else %}
+            {{ turn.time }}
+            {% endif %}
+        </div>
+        <div class="col">
+            <a href="" style="text-decoration: none;">
+                <i class="fa-solid fa-trash fs-3 text-danger"></i>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="container col-9 d-flex justify-content-around mt-4 mb-4">
+        <a href="{% url 'home' %}">
+            <button type="button" class="btn btn-primary">Atras</button>
+        </a>
+    </div>
+    {% endblock %}
