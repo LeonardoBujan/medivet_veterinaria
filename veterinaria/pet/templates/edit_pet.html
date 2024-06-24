@@ -1,0 +1,37 @@
+{% include './base.html' %}
+
+{% block title %}
+<title>Modificar Mascota</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid col-4 my-auto">
+    <h1 class="text-center mb-4">Modificar Mascota</h1>
+    <form action="{% url 'pet_edit' pet_edit.id %}" method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="pet_name">Nombre</span>
+            <input type="text" class="form-control" aria-label="pet_name" aria-describedby="pet_name" name="pet_name"
+                value="{{ pet_edit.pet_name }}" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="date_birth">Fecha nacimiento</span>
+            <input type="date" class="form-control" aria-label="date_birth" aria-describedby="date_birth"
+                name="date_birth" value="{{ date_birth }}" required>
+        </div>
+        <select class="form-select mb-3" aria-label="Default select example" name="type_pet">
+            <option selected>{{ pet_edit.type_pet }}</option>
+            {% for type in type_pet %}
+            <option value="{{ type.id }}">{{ type.type_pet_name }}</option>
+            {% endfor %}
+        </select>
+        <div class="container text-center d-flex justify-content-around">
+            <a href="{% url 'pet' %}">
+                <button type="button" class="btn btn-primary mt-3">Cancelar</button>
+            </a>
+            <button type="submit" class="btn btn-primary mt-3">Modificar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

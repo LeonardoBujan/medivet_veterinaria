@@ -1,0 +1,54 @@
+{% load static %}
+
+{% include './base.html' %}
+
+{% block title %}
+<title>Fecha</title>
+<script src="{% static 'js/create_date.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Seleccionar Fecha</h1>
+</div>
+
+<div class="container input-group mt-4 mb-3 w-50">
+    <span class="input-group-text" id="date">Seleccionar fecha</span>
+    <input type="date" class="form-control me-3" aria-label="date" aria-describedby="date" name="date" id="date_turn"
+        value="{{ date }}">
+
+    <button type="button" class="btn btn-primary ms-3" id="search_date">Buscar</button>
+
+</div>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="container d-flex justify-content-center text-center">
+        <div class="col-3">
+            <h4>Horario del turno</h4>
+        </div>
+        <div class="col-3">
+            <h4>Seleccionar</h4>
+        </div>
+    </div>
+    {% for hour in hours %}
+    <div class="container d-flex justify-content-center text-center mb-2">
+        <div class="col-3 border border-end-0">
+            <p class="fs-5 m-0">{{ hour }}</p>
+        </div>
+        <div class="col-3 align-self-center border border-start-0 fs-5">
+            <input class="form-check-input" type="radio" name="hour_check" id="hour_check" value="{{ hour }}">
+        </div>
+    </div>
+
+    {% endfor %}
+    <div class="container d-flex justify-content-around mt-4 mb-4">
+        <a href="{% url 'create_professional' pets attention %}">
+            <button type="button" class="btn btn-primary">Atras</button>
+        </a>
+        <a href="">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load static %}
+
+{% include './base.html' %}
+
+{% block title %}
+<title>Turno</title>
+<script src="{% static 'js/create_turn.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-2">
+    <h1 class="text-center">Seleccionar Mascota</h1>
+</div>
+
+<div class="container text-center mt-3">
+    <div class="container d-flex col-9">
+        <div class="col">
+            <h4>Nombre</h4>
+        </div>
+        <div class="col">
+            <h4>Tipo Mascota</h4>
+        </div>
+        <div class="col">
+            <h4>Seleccionar</h4>
+        </div>
+    </div>
+    {% for pet in pets %}
+    <div class="container col-9 d-flex mt-2 mb-2 pt-2 pb-2 border border-primary-subtle rounded">
+        <div class="col">
+            {{ pet.pet_name }}
+        </div>
+        <div class="col">
+            {{ pet.type_pet }}
+        </div>
+        <div class="col">
+            <input class="form-check-input" type="radio" value="{{ pet.id }}" id="{{ pet.id }}" name="pet_check">
+        </div>
+    </div>
+    {% endfor %}
+    <div class="container col-9 d-flex justify-content-around mt-4 mb-4">
+        <a href="{% url 'home' %}">
+            <button type="button" class="btn btn-primary">Atras</button>
+        </a>
+
+        <button type="button" class="btn btn-primary" id="select_create_turn">Siguiente</button>
+
+    </div>
+    {% endblock %}
