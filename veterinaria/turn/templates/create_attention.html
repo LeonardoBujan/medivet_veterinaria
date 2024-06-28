@@ -9,6 +9,8 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+
 <div class="container">
     <h1 class="text-center">Seleccionar Tipo de Atencion</h1>
 </div>
@@ -41,5 +43,10 @@
         <button type="button" class="btn btn-primary" id="select_create_attention">Siguiente</button>
 
     </div>
+</div>
 
-    {% endblock %}
+{% else %}
+<h3>No existe una sesión activa</h3>
+{% endif %}
+
+{% endblock %}

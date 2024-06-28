@@ -6,6 +6,8 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+
 <div class="container-fluid col-4 my-auto">
     <form action='/pet/create/' method="POST">
         {% csrf_token %}
@@ -33,4 +35,9 @@
         </div>
     </form>
 </div>
+
+{% else %}
+<h3>No existe una sesión activa</h3>
+{% endif %}
+
 {% endblock %}
