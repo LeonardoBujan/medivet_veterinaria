@@ -6,6 +6,8 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+
 <div class="container-fluid col-4 my-auto">
     <h1 class="text-center mb-4">Eliminar Mascota</h1>
     <form action="{% url 'pet_delete' pet_delete.id %}" method="POST">
@@ -34,4 +36,9 @@
         </div>
     </form>
 </div>
+
+{% else %}
+<h3>No existe una sesión activa</h3>
+{% endif %}
+
 {% endblock %}

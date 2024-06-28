@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
 <div class="container mt-2">
     <h1 class="text-center">Turnos</h1>
 </div>
@@ -57,4 +59,10 @@
             <button type="button" class="btn btn-primary">Atras</button>
         </a>
     </div>
-    {% endblock %}
+</div>
+
+{% else %}
+<h3>No existe una sesión activa</h3>
+{% endif %}
+
+{% endblock %}

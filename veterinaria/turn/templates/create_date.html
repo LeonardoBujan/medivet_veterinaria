@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
 <div class="container">
     <h1 class="text-center">Seleccionar Fecha</h1>
 </div>
@@ -51,4 +52,9 @@
         </a>
     </div>
 </form>
+
+{% else %}
+<h3>No existe una sesión activa</h3>
+{% endif %}
+
 {% endblock %}
