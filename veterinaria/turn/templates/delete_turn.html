@@ -1,0 +1,63 @@
+{% include './base.html' %}
+
+{% block title %}
+<title>Eliminar turno</title>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="container mt-2">
+    <h1 class="text-center">Eliminar turno</h1>
+</div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container text-center mt-3">
+        <div class="container d-flex">
+            <div class="col">
+                <h4>Mascota</h4>
+            </div>
+            <div class="col">
+                <h4>Profesional</h4>
+            </div>
+            <div class="col">
+                <h4>Fecha</h4>
+            </div>
+            <div class="col">
+                <h4>Hora</h4>
+            </div>
+        </div>
+
+        <div class="container d-flex mt-2 mb-2 pt-2 pb-2 border border-primary-subtle rounded">
+            <div class="col">
+                {{ turn_delete.pet }}
+            </div>
+            <div class="col">
+                {{ turn_delete.professional }}
+            </div>
+            <div class="col">
+                {{ turn_delete.date }}
+            </div>
+            <div class="col">
+                {{ turn_delete.time }}
+            </div>
+        </div>
+
+        <div class="container col-9 d-flex justify-content-around mt-4 mb-4">
+            <a href="{% url 'turn' %}">
+                <button type="button" class="btn btn-primary">Cancelar</button>
+            </a>
+
+            <a href="{% url 'turn_delete' turn_delete.id %}">
+                <button type="submit" class="btn btn-primary">Confirmar</button>
+            </a>
+        </div>
+    </div>
+</form>
+
+{% else %}
+<h3>No existe una sesión activa</h3>
+{% endif %}
+
+{% endblock %}

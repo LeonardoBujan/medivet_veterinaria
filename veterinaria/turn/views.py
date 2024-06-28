@@ -86,4 +86,18 @@ class TurnCreateDateView(TemplateView):
                 'msg': "No se pudo crear el turno"})
 
 class TurnDeleteView(TemplateView):
-    pass
+    template_name = 'delete_turn.html'
+
+    def get(self, request, id, *args, **kwargs):
+        turn = get_object_or_404(Turn, pk=id)
+        context = {'turn_delete': turn}
+        return render(request, self.template_name, context)
+
+    def post(self, request, id, *args, **kwargs):        
+        turn = get_object_or_404(Turn, pk=id)
+        try:
+            turn.delete()
+            return redirect('turn')
+        except:
+            return render(request, 'turn.html', {
+                'msg': "No se pudo eliminar el turno"})

@@ -41,14 +41,10 @@
             {{ turn.date }}
         </div>
         <div class="col">
-            {% if turn.time == noon %}
-            {{ '12:00' }}
-            {% else %}
             {{ turn.time }}
-            {% endif %}
         </div>
         <div class="col">
-            <a href="" style="text-decoration: none;">
+            <a href="{% url 'turn_delete' turn.id %}" style="text-decoration: none;">
                 <i class="fa-solid fa-trash fs-3 text-danger"></i>
             </a>
         </div>
