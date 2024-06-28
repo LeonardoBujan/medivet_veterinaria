@@ -12,42 +12,50 @@
     <h1 class="text-center">Mascotas</h1>
 </div>
 
-<div class="container mt-3">
-    <table class="table table-striped">
-        <thead>
-            <tr class="text-center">
-                <th scope="col">Nombre</th>
-                <th scope="col">Tipo mascota</th>
-                <th scope="col">Fecha Nacimiento</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for pet in pets %}
-            <tr class="text-center">
-                <td>{{ pet.pet_name }}</td>
-                <!-- <td>{{ pet.id_type_pet_id }}</td> -->
-                <td>{{ pet.type_pet }}</td>
-                <td>{{ pet.date_birth_pet }}</td>
-                <td>
-                    <div>
-                        <a href="{% url 'pet_edit' pet.id %}" style="text-decoration: none;" class="me-2">
-                            <i class="fa-solid fa-pen-to-square fs-3 text-success"></i>
-                        </a>
-                        <a href="{% url 'pet_delete' pet.id %}" style="text-decoration: none;">
-                            <i class="fa-solid fa-trash fs-3 text-danger"></i>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container text-center mt-3">
+    <div class="container d-flex">
+        <div class="col">
+            <h4>Nombre</h4>
+        </div>
+        <div class="col">
+            <h4>Tipo de mascota</h4>
+        </div>
+        <div class="col">
+            <h4>Fecha Nacimiento</h4>
+        </div>
+        <div class="col">
+            <h4>Acciones</h4>
+        </div>
+    </div>
+
+    {% for pet in pets %}
+    <div class="container d-flex mt-2 mb-2 pt-2 pb-2 border border-primary-subtle rounded">
+        <div class="col">
+            {{ pet.pet_name }}
+        </div>
+        <div class="col">
+            {{ pet.type_pet }}
+        </div>
+        <div class="col">
+            {{ pet.date_birth_pet }}
+        </div>
+        <div class="col">
+            <div>
+                <a href="{% url 'pet_edit' pet.id %}" style="text-decoration: none;" class="me-2">
+                    <i class="fa-solid fa-pen-to-square fs-3 text-success"></i>
+                </a>
+                <a href="{% url 'pet_delete' pet.id %}" style="text-decoration: none;">
+                    <i class="fa-solid fa-trash fs-3 text-danger"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 
 <div class="container d-flex justify-content-between mt-4 mb-4">
     <a href="{% url 'home' %}">
-        <button type="button" class="btn btn-primary">Volver</button>
+        <button type="button" class="btn btn-primary">Atras</button>
     </a>
     <a href="{% url 'pet_create' %}">
         <button type="button" class="btn btn-primary">Agregar Mascota</button>
