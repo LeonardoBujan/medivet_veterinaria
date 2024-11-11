@@ -28,7 +28,7 @@ class PetCreateView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         type_pet = TypePet.objects.get(id=request.POST['type_pet'])
-        pet = Pet(user=request.user, type_pet=type_pet, pet_name=request.POST['pet_name'], date_birth_pet=request.POST['date_birth'])
+        pet = Pet(user=request.user, type_pet=type_pet, pet_name=request.POST['pet_name'], date_birth_pet=request.POST['date_birth'], image_pet=request.FILES.get('image_pet'))
         try:
             pet.save()
             return redirect('pet')

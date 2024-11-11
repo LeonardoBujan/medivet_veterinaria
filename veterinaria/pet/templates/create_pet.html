@@ -8,8 +8,12 @@
 
 {% if user.is_authenticated %}
 
+<div class="container mt-2 mb-4">
+    <h1 class="text-center">Registrar Mascota</h1>
+</div>
+
 <div class="container-fluid col-4 my-auto">
-    <form action='/pet/create/' method="POST">
+    <form action='/pet/create/' method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="input-group mb-3">
             <span class="input-group-text" id="pet_name">Nombre</span>
@@ -27,6 +31,10 @@
             <option value="{{ type.id }}">{{ type.type_pet_name }}</option>
             {% endfor %}
         </select>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="image_pet">Imagen</span>
+            <input type="file" class="form-control" name="image_pet">
+        </div>
         <div class="container text-center d-flex justify-content-around">
             <a href="{% url 'pet' %}">
                 <button type="button" class="btn btn-primary mt-3">Cancelar</button>
