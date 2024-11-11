@@ -1,0 +1,129 @@
+{% include './base.html' %}
+
+{% block title %}
+<title>User</title>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="container">
+    <h1 class="text-center">Mis Datos</h1>
+</div>
+
+<div class="container mt-2 mb-4">
+    <div class="container d-flex justify-content-center">
+        <div class="mb-3 w-25 me-2">
+            <label for="user" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="user" value="{{name_user}}" disabled>
+          </div>
+        <div class="mb-3 w-25 ms-2">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" value="{{email}}" disabled>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center">
+        <div class="mb-3 w-25 me-2">
+            <label for="first_name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="first_name" value="{{first_name}}">
+        </div>
+        <div class="mb-3 w-25 ms-2">
+            <label for="last_name" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="last_name" value="{{last_name}}">
+        </div>
+    </div>
+    
+    <!-- Domicilio -->
+    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
+        <h4 class="text-center mb-0 me-3">Domicilio</h4>
+        <a href="{% url 'create_address' %}"><i class="fa-solid fa-circle-plus fs-3"></i></a>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">        
+        <div class="container mt-2 mb-4 border border-dark-subtle rounded-4">
+            <div class="container d-flex justify-content-center">
+                <!-- ENCABEZADO -->
+                <div class="w-25 me-2">
+                    <h6 class="text-center">Calle</h6>
+                </div>
+                <div class="w-25 ms-2">
+                    <h6 class="text-center">Numero</h6>
+                </div>
+                <div class="w-25 ms-2">
+                    <h6 class="text-center">Piso</h6>
+                </div>
+                <div class="w-25 ms-2">
+                    <h6 class="text-center">Departamento</h6>
+                </div>
+            </div>
+            
+            {% for add in address %}
+            <!-- DATOS DE DOMICILIO REGISTRADOS PARA EL USUARIO -->
+            <div class="container d-flex justify-content-center">                  
+                <div class="mt-1 mb-1 w-25 me-2">
+                    <p class="text-center" id="street">{{add.street}}</p>
+                </div>
+                <div class="mt-1 mb-1 w-25 ms-2">
+                    <p class="text-center" id="number">{{add.number}}</p>
+                </div>
+                <div class="mt-1 mb-1 w-25 ms-2">
+                    <p class="text-center" id="floor">{{add.floor}}</p>
+                </div>
+                <div class="mt-1 mb-1 w-25 ms-2">
+                    <p class="text-center" id="deparment">{{add.deparment}}</p>
+                </div>
+            </div>
+            {% endfor %}
+    
+        </div>
+    </div>
+    <!-- Telefono -->
+
+    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
+        <h4 class="text-center mb-0 me-3">Telefono</h4>
+        <a href="{% url 'create_telephone' %}"><i class="fa-solid fa-circle-plus fs-3"></i></a>
+    </div>  
+    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">        
+        <div class="container mt-2 mb-4 border border-dark-subtle rounded-4">
+            <div class="container d-flex justify-content-center">
+                <!-- ENCABEZADO -->
+                <div class="w-25 me-2">
+                    <h6 class="text-center">Codigo Pais</h6>
+                </div>
+                <div class="w-25 ms-2">
+                    <h6 class="text-center">Codigo de Area</h6>
+                </div>
+                <div class="w-25 ms-2">
+                    <h6 class="text-center">Numero</h6>
+                </div>
+            </div>
+            
+            {% for tel in telephone %}
+            <!-- DATOS REGISTRADOS PARA EL USUARIO -->
+            <div class="container d-flex justify-content-center">                  
+                <div class="mt-1 mb-1 w-25 me-2">
+                    <p class="text-center" id="country_code" name="country_code">{{tel.country_code}}</p>
+                </div>
+                <div class="mt-1 mb-1 w-25 ms-2">
+                    <p class="text-center" id="area_code" name="area_code">{{tel.area_code}}</p>
+                </div>
+                <div class="mt-1 mb-1 w-25 ms-2">
+                    <p class="text-center" id="telephone_number" name="telephone_number">{{tel.telephone_number}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>      
+    </div>
+</div>
+
+<div class="container d-flex justify-content-between mt-4 mb-4">
+    <a href="{% url 'home' %}">
+        <button type="button" class="btn btn-primary">Atras</button>
+    </a>
+</div>
+
+{% else %}
+<h3>No existe una sesión activa</h3>
+{% endif %}
+
+{% endblock %}
