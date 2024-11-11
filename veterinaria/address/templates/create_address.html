@@ -1,0 +1,52 @@
+{% include './base.html' %}
+
+{% block title %}
+<title>Domicilio</title>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="container">
+    <h1 class="text-center">Registrar Domicilio</h1>
+</div>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="container mt-2 mb-4">
+        <div class="container d-flex justify-content-center">
+            <div class="mb-3 w-25 me-2">
+                <label for="street" class="form-label">Calle</label>
+                <input type="text" class="form-control" id="street" name="street">
+            </div>
+            <div class="mb-3 w-25 ms-2">
+                <label for="number" class="form-label">Numero</label>
+                <input type="text" class="form-control" id="number" name="number">
+            </div>
+            <div class="mb-3 w-25 ms-2">
+                <label for="floor" class="form-label">Piso</label>
+                <input type="text" class="form-control" id="floor" name="floor">
+            </div>
+            <div class="mb-3 w-25 ms-2">
+                <label for="deparment" class="form-label">Departamento</label>
+                <input type="text" class="form-control" id="deparment" name="deparment">
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-flex justify-content-between mt-4 mb-4">
+        <a href="{% url 'user' %}">
+            <button type="button" class="btn btn-primary">Atras</button>
+        </a>
+        <a href="">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </a>
+    </div>
+</form>
+
+{% else %}
+<h3>No existe una sesión activa</h3>
+{% endif %}
+
+{% endblock %}
