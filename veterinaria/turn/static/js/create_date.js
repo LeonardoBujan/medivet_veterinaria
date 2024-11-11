@@ -4,7 +4,7 @@ window.addEventListener("load", ()=>{
     let url_actual = window.location.href
     let url_final = ""
 
-    button_search_date.addEventListener("click", ()=>{        
+    button_search_date.addEventListener("click", ()=>{
         if (url_actual.endsWith("date/")) {
             url_final = url_actual + date_turn.value + "/"
         } else {

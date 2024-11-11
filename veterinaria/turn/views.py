@@ -4,6 +4,9 @@ from pet.models import Pet
 from type_attention.models import TypeAttention
 from professional.models import Professional
 from turn.models import Turn
+from send_email.views import ConfirmationEmail
+from django.conf import settings
+from django.template.loader import render_to_string
 
 class TurnListView(TemplateView):
     template_name = 'turn.html'
@@ -75,15 +78,29 @@ class TurnCreateDateView(TemplateView):
         professional = get_object_or_404(Professional, pk=id_professional)
         time = request.POST['hour_check']
 
-        print(time)
         turn = Turn(user=request.user, pet=pet, professional=professional, date=date, time=time)
+
+        subject = "Confirmación de turno - Veterinaria Medivet"
+        from_email = settings.EMAIL_HOST_USER # correo electrónico de la veterinaria
+        to = request.user.email # correo electrónico del usuario
+        text_content = "Otra parte del mail al usuario"
+        context = { "pet": pet.pet_name, "first_name_professional": professional.first_name_professional, "last_name_professional": professional.last_name_professional, "date": date, "time": time }
 
         try:
             turn.save()
+
+            # envía email de confirmación de turno
+            try:
+                new_email = ConfirmationEmail(subject, from_email, to, text_content)
+                html_content = render_to_string("confirmed_shift.html", context) # html que da formato al email
+                new_email.create_mail(html_content)
+            except:
+                return redirect('turn')
             return redirect('turn')
         except:
             return render(request, 'create_date.html', {
                 'msg': "No se pudo crear el turno"})
+
 
 class TurnDeleteView(TemplateView):
     template_name = 'delete_turn.html'
