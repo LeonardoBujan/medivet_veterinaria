@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +25,11 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('logout/', include('log_off.urls')),
     path('register/', include('register.urls')),
+    path('user/', include('custom_user.urls')),
     path('pet/', include('pet.urls')),
     path('turn/', include('turn.urls')),
+    path('contact/', include('send_email.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    
