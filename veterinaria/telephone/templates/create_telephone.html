@@ -1,0 +1,49 @@
+{% include './base.html' %}
+
+{% block title %}
+<title>Telefono</title>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="container">
+    <h1 class="text-center">Registrar Telefono</h1>
+</div>
+
+<form action="/user/create_telephone/" method="POST">
+    {% csrf_token %}
+    <div class="container mt-2 mb-4">
+        <div class="container d-flex justify-content-center">
+            <div class="mb-3 w-25 me-2">
+                <label for="country_code" class="form-label">Codigo Pais</label>
+                <input type="text" class="form-control" id="country_code" name="country_code">
+              </div>
+            <div class="mb-3 w-25 ms-2">
+                <label for="area_code" class="form-label">Codigo de Area</label>
+                <input type="text" class="form-control" id="area_code" name="area_code">
+            </div>
+            <div class="mb-3 w-25 ms-2">
+                <label for="telephone_number" class="form-label">Numero</label>
+                <input type="text" class="form-control" id="telephone_number" name="telephone_number">
+            </div>        
+        </div>
+    </div>
+    <!-- Botones de la página -->
+    <div class="container d-flex justify-content-between mt-4 mb-4">
+        <a href="{% url 'user' %}">
+            <button type="button" class="btn btn-primary">Atras</button>
+        </a>
+        <a href="">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </a>
+    </div>
+</form>
+
+
+{% else %}
+<h3>No existe una sesión activa</h3>
+{% endif %}
+
+{% endblock %}
