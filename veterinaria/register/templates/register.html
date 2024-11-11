@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block content %}
+<div class="container mt-2 mb-4">
+    <h1 class="text-center">Registro</h1>
+</div>
+
 <div class="container-fluid col-4 my-auto">
     <form action='/register/' method="POST">
         {% csrf_token %}
