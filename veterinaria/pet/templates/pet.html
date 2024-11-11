@@ -37,7 +37,7 @@
             {{ pet.type_pet }}
         </div>
         <div class="col">
-            {{ pet.date_birth_pet }}
+            {{ pet.date_birth_pet|date:"j F Y" }}
         </div>
         <div class="col">
             <div>
@@ -53,7 +53,7 @@
     {% endfor %}
 </div>
 
-<div class="container d-flex justify-content-between mt-4 mb-4">
+<div class="container d-flex justify-content-around mt-4 mb-4">
     <a href="{% url 'home' %}">
         <button type="button" class="btn btn-primary">Atras</button>
     </a>

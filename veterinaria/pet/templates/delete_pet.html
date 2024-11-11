@@ -8,8 +8,12 @@
 
 {% if user.is_authenticated %}
 
+<div class="container mt-2 mb-4">
+    <h1 class="text-center">Eliminar Mascota</h1>
+</div>
+
 <div class="container-fluid col-4 my-auto">
-    <h1 class="text-center mb-4">Eliminar Mascota</h1>
+
     <form action="{% url 'pet_delete' pet_delete.id %}" method="POST">
         {% csrf_token %}
         <div class="input-group mb-3">
