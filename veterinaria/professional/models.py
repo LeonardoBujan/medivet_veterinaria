@@ -6,6 +6,7 @@ class Professional (models.Model):
     last_name_professional = models.CharField(max_length=50)
     registration = models.CharField(max_length=20)
     type_attention = models.ForeignKey(TypeAttention, on_delete=models.CASCADE)
+    image_professional = models.ImageField(upload_to='professionals', null=True, blank=True)
 
     class Meta:
         db_table = 'professional'
